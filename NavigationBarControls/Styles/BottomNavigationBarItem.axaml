@@ -1,0 +1,39 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="using:NavigationBarControls.Controls">
+  <!-- Add Resources Here -->
+  <Design.PreviewWith>
+    <Border Padding="20">
+        <controls:BottomNavigationBarItem>
+          <controls:BottomNavigationBarItem.Icon>
+            <Button/>
+          </controls:BottomNavigationBarItem.Icon>
+
+          <controls:BottomNavigationBarItem.Content>
+            Hello
+          </controls:BottomNavigationBarItem.Content>
+        </controls:BottomNavigationBarItem>
+    </Border>
+  </Design.PreviewWith>
+
+  <ControlTheme x:Key="{x:Type controls:BottomNavigationBarItem}" TargetType="controls:BottomNavigationBarItem">
+    <Setter Property="GroupName" Value="Navigation"/>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid ColumnDefinitions="auto, auto">
+          <Panel Grid.Column="0">
+            <ContentPresenter x:Name="PART_IconPresenter"
+                              Content="{TemplateBinding Icon}"
+                              ContentTemplate="{TemplateBinding IconTemplate}" />
+          </Panel>
+          <Panel Grid.Column="1">
+            <ContentPresenter x:Name="PART_ContentPresenter"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+          </Panel>
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+</ResourceDictionary>
