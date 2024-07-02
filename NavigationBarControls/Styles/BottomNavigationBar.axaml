@@ -6,16 +6,28 @@
     <Border>
       <StackPanel Spacing="20">
         <controls:BottomNavigationBar>
-
+          <Button/>
+          <Button/>
+          <Button/>
         </controls:BottomNavigationBar>
       </StackPanel>
     </Border>
   </Design.PreviewWith>
 
   <ControlTheme x:Key="{x:Type controls:BottomNavigationBar}" TargetType="controls:BottomNavigationBar">
+    <Setter Property="Background" Value="White"/>
+    <Setter Property="BorderBrush" Value="#5482e3"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Padding" Value="20, 16"/>
+    <Setter Property="CornerRadius" Value="32"/>
+    <Setter Property="HorizontalAlignment" Value="Stretch"/>
     <Setter Property="Template">
       <ControlTemplate>
-        <Border>
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Padding="{TemplateBinding Padding}">
           <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"/>
         </Border>
       </ControlTemplate>
