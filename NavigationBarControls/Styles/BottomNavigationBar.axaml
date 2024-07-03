@@ -18,9 +18,10 @@
     <Setter Property="Background" Value="White"/>
     <Setter Property="BorderBrush" Value="#5482e3"/>
     <Setter Property="BorderThickness" Value="1"/>
-    <Setter Property="Padding" Value="20, 16"/>
+    <Setter Property="Padding" Value="16, 20"/>
     <Setter Property="CornerRadius" Value="32"/>
     <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    <Setter Property="Spacing" Value="10"/>
     <Setter Property="Template">
       <ControlTemplate>
         <Border Background="{TemplateBinding Background}"
@@ -28,13 +29,15 @@
                 BorderThickness="{TemplateBinding BorderThickness}"
                 CornerRadius="{TemplateBinding CornerRadius}"
                 Padding="{TemplateBinding Padding}">
-          <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"/>
+          <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"/>
         </Border>
       </ControlTemplate>
     </Setter>
     <Setter Property="ItemsPanel">
       <ItemsPanelTemplate>
-        <StackPanel Orientation="Horizontal" Spacing="0"></StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="{TemplateBinding Spacing}"></StackPanel>
       </ItemsPanelTemplate>
     </Setter>
   </ControlTheme>

@@ -65,12 +65,26 @@
                 BorderThickness="{TemplateBinding BorderThickness}"
                 CornerRadius="{TemplateBinding CornerRadius}"
                 Padding="{TemplateBinding Padding}">
+
+          <Border.Transitions>
+            <Transitions>
+              <BrushTransition Property="Background" Easing="SineEaseOut" Duration="0:0:0.35"/>
+              <BrushTransition Property="BorderBrush" Easing="SineEaseOut" Duration="0:0:0.35"/>
+            </Transitions>
+          </Border.Transitions>
+          
           <Grid ColumnDefinitions="auto, auto">
             <Panel Grid.Column="0">
               <ContentPresenter x:Name="PART_IconPresenter"
                                 Content="{TemplateBinding Icon}"
                                 ContentTemplate="{TemplateBinding IconTemplate}" 
-                                Foreground="{TemplateBinding Foreground}"/>
+                                Foreground="{TemplateBinding Foreground}">
+                <ContentPresenter.Transitions>
+                  <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:.075" />
+                  </Transitions>
+                </ContentPresenter.Transitions>
+              </ContentPresenter>
             </Panel>
             <Panel Grid.Column="1">
               <ContentPresenter x:Name="PART_ContentPresenter"
@@ -79,53 +93,45 @@
                                 Foreground="{TemplateBinding Foreground}">
                 <ContentPresenter.Transitions>
                   <Transitions>
-                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:1"/>                    
+                    <DoubleTransition Property="Width" Easing="SineEaseOut" Duration="0:0:0.2" Delay="0.1"/>                    
                   </Transitions>
                 </ContentPresenter.Transitions>
               </ContentPresenter>
             </Panel>
           </Grid>
-
-          <Border.Transitions>
-            <Transitions>
-              <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.05"/>
-            </Transitions>
-          </Border.Transitions>
         </Border>
       </ControlTemplate>
     </Setter>
 
     <Style Selector="^:unchecked">
       <Style Selector="^ /template/ Border#PART_Border">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>        
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="White"/>        
       </Style>
 
       <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">        
-        <Setter Property="IsVisible" Value="False"/>
+        <Setter Property="Width" Value="0"/>        
+      </Style>
+
+      <Style Selector="^:pressed /template/ ContentPresenter#PART_IconPresenter">
+        <Setter Property="RenderTransform" Value="scale(0.9)" />
       </Style>
     </Style>
 
-    <Style Selector="^:checked">
-      <Style Selector="^ /template/ ContentPresenter">
-        <Setter Property="Foreground" Value="White"/>        
-      </Style>
+      <Style Selector="^:checked">
+        <Style Selector="^ /template/ Border#PART_Border">
+          <Setter Property="Background" Value="{TemplateBinding Background}"/>
+          <Setter Property="BorderBrush" Value="{TemplateBinding BorderBrush}"/>
+        </Style>
       
-      <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-        <Style.Animations>
-          <Animation Duration="0:0:0.2"
-                     Easing="SineEaseOut">
-            <KeyFrame Cue="0%">
-              <Setter Property="IsVisible" Value="False"/>
-            </KeyFrame>
-            <KeyFrame Cue="100%">
-              <Setter Property="IsVisible" Value="True"/>
-            </KeyFrame>
-          </Animation>
-        </Style.Animations>
-      </Style>
+        <Style Selector="^ /template/ ContentPresenter">
+          <Setter Property="Foreground" Value="White"/>        
+        </Style>
       
-    </Style>
+        <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+          <Setter Property="Width" Value="70"/>        
+        </Style>
+      </Style>
   </ControlTheme>
 
 </ResourceDictionary>
